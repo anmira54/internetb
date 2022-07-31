@@ -1,20 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Navigation from "./components/Navigation";
+import { LogBox } from 'react-native'; //This is to delete the warning of the firebase (AsyncStorage)
+
+
 
 export default function App() {
+  /* LogBox.ignoreLogs(['Warning: Async Storage has been extracted from react-native core']); */ //This is not working Need to Solve it
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Navigation />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
