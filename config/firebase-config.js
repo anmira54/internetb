@@ -1,10 +1,10 @@
-import env from './env-config';
+import { APIKEY, AUTHDOMAIN, PROJECTID, STORAGEBUCKET, MESSAGINGSENDERID, APPID } from '@env';
 
 export const firebaseConfig = {
-  apiKey: { env,APIKEY },
-  authDomain: { env,AUTHDOMAIN },
-  projectId: { env,PROJECTID },
-  storageBucket: { env,STORAGEBUCKET },
-  messagingSenderId: { env,MESSAGINGSENDERID },
-  appId: { env,APPID }
+  apiKey: APIKEY,
+  authDomain: AUTHDOMAIN,
+  projectId: PROJECTID,
+  storageBucket: STORAGEBUCKET,
+  messagingSenderId: MESSAGINGSENDERID,
+  appId: APPID
 };

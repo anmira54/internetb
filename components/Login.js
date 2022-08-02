@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../config/firebase-config';
-import TouchID from 'react-native-touch-id';
 
 
 const Login = () => {

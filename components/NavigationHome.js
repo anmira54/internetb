@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from "./Home";
 import Settings from "./Settings";
@@ -12,7 +12,7 @@ const NavigationHome = () => {
         <Tab.Navigator>
             <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
             <Tab.Screen name="Transferencia" component={WireTransference} options={{ headerShown: false }} />
-            <Tab.Screen name="Ajustes" component={Settings} options={{ headerShown: false }} />            
+            <Tab.Screen name="Ajustes" component={Settings} options={{ headerShown: false }} />
         </Tab.Navigator>
     )
 }
