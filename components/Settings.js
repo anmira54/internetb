@@ -15,7 +15,7 @@ const Settings = () => {
 
     const signOutAccount = () => {
         signOut(auth)
-            .then(() => navigation.replace('Iniciar Sesión'))
+            .then(() => navigation.navigate('Hello'))
             .catch(error => Alert.alert(error.message));
     }
 
