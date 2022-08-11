@@ -25,6 +25,7 @@ const Transaction = (props) => {
     });
 
     useEffect(() => {
+        console.log(SERVER_ADDRESS);
         let endpoints = [
             SERVER_ADDRESS + "/api/transaction/originate",
             SERVER_ADDRESS + "/api/transaction/destination",
@@ -51,10 +52,8 @@ const Transaction = (props) => {
             setTransactionJsonOriginate(listTransactionOriginate.data);
             setTransactionJsonDestination(listTransactionDestination.data);
         };
-        console.log("Se renderizo transaction");
-
         listTransactions();
-    }, [props.refreshing]);
+    }, [props.refreshing, props.show]);
 
     if (!fontsLoaded) {
         return <AppLoading />;
@@ -72,7 +71,7 @@ const Transaction = (props) => {
         return tListByDate.map((res) => {
             if (res.originalAddressBankAccount === props.addressBankAccount) {
                 return (
-                    <TransactionListDestination
+                    <TransactionListOriginate
                         concept={res.reason}
                         date={res.date}
                         amount={res.amount}
@@ -80,7 +79,7 @@ const Transaction = (props) => {
                 );
             } else {
                 return (
-                    <TransactionListOriginate
+                    <TransactionListDestination
                         concept={res.reason}
                         date={res.date}
                         amount={res.amount}

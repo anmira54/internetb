@@ -19,7 +19,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase-config";
 import axios from "axios";
 import { SERVER_ADDRESS } from "@env";
-import TransactionList from "./Transaction";
+import Transaction from "./Transaction";
 
 const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -30,6 +30,10 @@ const Home = ({ route }) => {
     const [addressBankAccount, setAddressBankAccount] = useState("");
     const [amount, setAmount] = useState("");
     const { jwtToken } = route.params;
+    const [transactionsShow, setTransactionsShow] = useState(false);
+    const [textTransaction, setTextTransaction] = useState(
+        "Mostrar transacciones"
+    );
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -75,7 +79,6 @@ const Home = ({ route }) => {
                 },
             });
             setAmount(request.data.generalBalance);
-            console.log("Se renderizo home");
         };
 
         addressBank();
@@ -84,6 +87,12 @@ const Home = ({ route }) => {
     if (!fontsLoaded) {
         return <AppLoading />;
     }
+
+    const showTransaction = () => {
+        setTransactionsShow(!transactionsShow);
+        if (textTransaction === "Mostrar transacciones") setTextTransaction ("Ocultar transacciones")
+        else setTextTransaction("Mostrar transacciones")
+    };
 
     return (
         <ScrollView
@@ -103,11 +112,23 @@ const Home = ({ route }) => {
             </View>
             <View style={styles.transactionListContainer}>
                 <Text style={styles.transactionsText}>Transacciones</Text>
-                <TransactionList
-                    addressBankAccount={addressBankAccount}
-                    jwtToken={jwtToken}
-                    refreshing={refreshing}
-                />
+                <View>
+                    {transactionsShow ? (
+                        <Transaction
+                            addressBankAccount={addressBankAccount}
+                            jwtToken={jwtToken}
+                            show={transactionsShow}
+                            refreshing={refreshing}
+                        />
+                    ) : null
+                    }
+                </View>
+                <TouchableOpacity
+                    style={styles.TouchableOpacity}
+                    onPress={showTransaction}
+                >
+                    <Text style={styles.Text}>{textTransaction}</Text>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     );
@@ -160,6 +181,19 @@ const styles = StyleSheet.create({
     },
     transactionListContainer: {
         alignItems: "center",
+    },
+    TouchableOpacity: {
+        width: 250,
+        borderRadius: 10,
+        backgroundColor: "#00bfff",
+        marginTop: 6,
+        padding: 9
+    },
+    Text: {
+        textAlign: "center",
+        color: "black",
+        fontSize: 15,
+        fontFamily: "sans-serif",
     },
 });
 
