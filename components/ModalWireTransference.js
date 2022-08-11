@@ -32,9 +32,6 @@ const ModalWireTransference = (props) => {
                     },
                 }
             )
-            .then((res) => {
-                setModalVisible(!modalVisible);
-            })
             .catch((e) => {
                 Alert.alert(
                     e,

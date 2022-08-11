@@ -82,6 +82,7 @@ const Home = ({ route }) => {
         };
 
         addressBank();
+        return ;
     }, [refreshing]);
 
     if (!fontsLoaded) {

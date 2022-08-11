@@ -66,6 +66,7 @@ const WireTransference = ({ route }) => {
         };
 
         bankAccount();
+        return ;
     }, []);
 
     useEffect(() => {
@@ -83,6 +84,7 @@ const WireTransference = ({ route }) => {
             );
         };
         userBankDestinationName();
+        return ;
     }, [beneficiarie]);
 
     useEffect(() => {
@@ -98,6 +100,7 @@ const WireTransference = ({ route }) => {
             setAmountAvilaible(data.data.generalBalance);
         };
         amountAvilaible();
+        return ;
     }, [userBank]);
 
     function showModalFunction() {

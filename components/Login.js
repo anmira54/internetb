@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, TextInput, Button, View, TouchableOpacity, Te
 import { useNavigation } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import { useFonts, Raleway_700Bold, Raleway_400Regular } from '@expo-google-fonts/raleway';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../config/firebase-config';
 
@@ -56,6 +56,16 @@ const Login = () => {
             .catch((error) => Alert.alert(error.message));
     }
 
+    const resetPassword = () => {
+        if (email != '') {
+        sendPasswordResetEmail(auth, email)
+            .then(() => Alert.alert("Exito",'Un email de recuperacion fue enviado al correo ' + email))
+            .catch((error) => Alert.alert(error.message));
+        } else {
+            Alert.alert("Error", "Ingrese un correo electronico")
+        }
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.secondContainer}>
@@ -91,6 +101,9 @@ const Login = () => {
                 />
                 <TouchableOpacity style={styles.buttons} onPress={loginAccount}>
                     <Text style={styles.Text}>Iniciar Sesión</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttons} onPress={resetPassword}>
+                    <Text style={styles.Text}>¿Has olvidado tu contraseña?</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
