@@ -62,12 +62,14 @@ const WireTransference = ({ route }) => {
                     id: auth.currentUser.uid,
                 },
             });
+            
             setUserBank(data.data.addressBankAccount);
+            console.log(userBank)
         };
 
         bankAccount();
         return ;
-    }, []);
+    });
 
     useEffect(() => {
         const userBankDestinationName = async () => {
@@ -104,6 +106,7 @@ const WireTransference = ({ route }) => {
     }, [userBank]);
 
     function showModalFunction() {
+        console.log(payment)
         if (beneficiarie.length === 10) {
             if (!userBankDestinationName.includes("undefined")) {
                 if (userBank !== beneficiarie) {
